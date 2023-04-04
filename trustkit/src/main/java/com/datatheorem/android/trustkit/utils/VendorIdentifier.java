@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
 
 import java.util.UUID;
 
@@ -17,11 +16,14 @@ import java.util.UUID;
 public class VendorIdentifier {
 
     private static final String TRUSTKIT_VENDOR_ID = "TRUSTKIT_VENDOR_ID";
+    private static final String SHARED_PREF_NAME = "_preferences";
 
     @NonNull
     public static String getOrCreate(@NonNull Context appContext) {
-        SharedPreferences trustKitSharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(appContext);
+        SharedPreferences trustKitSharedPreferences = appContext.getSharedPreferences(
+                appContext.getPackageName() + SHARED_PREF_NAME,
+                Context.MODE_PRIVATE
+        );
         // We store the vendor ID in the App's preferences
         String appVendorId = trustKitSharedPreferences.getString(TRUSTKIT_VENDOR_ID, "");
         if (appVendorId.equals("")) {
