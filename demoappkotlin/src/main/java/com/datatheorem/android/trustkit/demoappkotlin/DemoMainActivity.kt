@@ -31,7 +31,7 @@ class DemoMainActivity : AppCompatActivity() {
 
         // Initialize TrustKit with the default path for the Network Security Configuration which is
         // res/xml/network_security_config.xml
-        TrustKit.initializeWithNetworkSecurityConfiguration(this)
+        TrustKit.initializeWithNetworkSecurityConfiguration(this, false)
         // Connect to the URL with valid pins - this connection will succeed
         DownloadWebpageTask().execute("https://www.datatheorem.com")
 
